@@ -15,7 +15,7 @@ export const Logo: React.FC<LogoProps> = ({
   const brandName = "NEXTFORGE";
   const tagline = "BUILDING THE NEXT";
 
-  // Navbar Version - Compact and Static Professionalism
+  // Navbar Version - Compact and Professional
   if (variant === 'nav') {
     return (
       <div className="flex flex-col items-start gap-1 group/nav-logo cursor-pointer">
@@ -36,11 +36,11 @@ export const Logo: React.FC<LogoProps> = ({
     );
   }
 
-  // Hero Version - High-Fidelity Neural Forge Animation
+  // Hero Version - High-Impact Edge Glow and Smooth Sequence
   return (
-    <div className="relative flex flex-col items-center justify-center group/logo cursor-pointer select-none min-h-[450px] md:min-h-[650px] w-full max-w-screen-2xl mx-auto overflow-visible px-4">
+    <div className="relative flex flex-col items-center justify-center group/logo cursor-pointer select-none min-h-[400px] md:min-h-[600px] w-full max-w-screen-2xl mx-auto overflow-hidden px-4 py-20">
       
-      {/* 1. THE CORE: Floating Laboratory Sphere / Logo */}
+      {/* 1. THE CORE: Central Floating Energy Source */}
       <div className={`${className} relative z-30 transition-all duration-1000 cubic-bezier(0.23, 1, 0.32, 1) group-hover/logo:opacity-0 group-hover/logo:blur-[120px] group-hover/logo:scale-[6] flex items-center justify-center animate-float pointer-events-none`}>
         {logoImage ? (
           <img src={logoImage} alt="NEXTFORGE Core" className="w-full h-full object-contain drop-shadow-[0_0_50px_rgba(34,211,238,0.7)]" />
@@ -65,17 +65,17 @@ export const Logo: React.FC<LogoProps> = ({
       </div>
 
       {/* 2. THE REVEAL: Scoped Brand Reveal Container */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-20 w-full overflow-visible">
+      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-20 w-full">
         
-        {/* 'NEXTFORGE' Letter Reveal with Intense Edge-Glow */}
-        <div className="flex justify-center items-center h-fit w-full px-2 mb-6 md:mb-12 overflow-visible">
+        {/* Brand Name: Each letter has a distinct high-intensity glow */}
+        <div className="flex justify-center items-center h-fit w-full px-2 mb-8 md:mb-16 overflow-visible">
           {brandName.split('').map((char, i) => (
             <span 
               key={i} 
               style={{ 
-                transitionDelay: `${i * 65}ms`,
-                fontSize: 'clamp(2.5rem, 12.5vw, 15rem)',
-                filter: 'drop-shadow(0 0 15px rgba(34,211,238,0.6)) drop-shadow(0 0 45px rgba(34,211,238,0.3))',
+                transitionDelay: `${i * 80}ms`,
+                fontSize: 'clamp(2.5rem, 11vw, 13rem)',
+                textShadow: '0 0 15px rgba(34,211,238,0.8), 0 0 30px rgba(34,211,238,0.4)',
               }} 
               className="font-black tracking-[-0.05em] text-white opacity-0 -translate-y-24 blur-2xl group-hover/logo:opacity-100 group-hover/logo:translate-y-0 group-hover/logo:blur-0 transition-all duration-700 cubic-bezier(0.19, 1, 0.22, 1) inline-block leading-none will-change-transform"
             >
@@ -84,14 +84,28 @@ export const Logo: React.FC<LogoProps> = ({
           ))}
         </div>
         
-        {/* 'BUILDING THE NEXT' Tagline Reveal (Smoothed sequencing) */}
-        <div className="flex justify-center items-center w-full max-w-[95vw] md:max-w-6xl opacity-0 translate-y-20 group-hover/logo:opacity-100 group-hover/logo:translate-y-0 transition-all duration-1000 delay-[800ms] px-4">
-          <div className="h-[1px] bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent flex-1" />
+        {/* Tagline: Smoothly emerges after the name is fully revealed */}
+        <div className="flex justify-center items-center w-full max-w-[90vw] md:max-w-6xl opacity-0 translate-y-12 group-hover/logo:opacity-100 group-hover/logo:translate-y-0 transition-all duration-1000 delay-[900ms] px-4">
+          <div className="h-[2px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent flex-1" />
           
-          <div className="relative px-6 md:px-20 py-4 flex flex-col items-center">
-            <span className="text-xs sm:text-base md:text-3xl lg:text-5xl font-black tracking-[0.4em] md:tracking-[0.8em] text-cyan-400 uppercase italic whitespace-nowrap drop-shadow-[0_0_20px_rgba(34,211,238,0.7)] text-center block">
+          <div className="relative px-6 md:px-16 py-3 flex flex-col items-center">
+            <span className="text-xs sm:text-base md:text-3xl lg:text-4xl font-black tracking-[0.4em] md:tracking-[0.6em] text-cyan-400 uppercase italic whitespace-nowrap drop-shadow-[0_0_20px_rgba(34,211,238,0.6)] text-center block">
               {tagline}
             </span>
             
-            {/* Tech Horizon Lines */}
-            <div className="absolute top-0 left-0 w-full h-[
+            {/* Animated Scanning Line */}
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-white/40 animate-scan-v opacity-0 group-hover/logo:opacity-100" />
+          </div>
+          
+          <div className="h-[2px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent flex-1" />
+        </div>
+      </div>
+      
+      {/* 3. ATMOSPHERE: High-Performance Glow Layers */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-cyan-600/0 group-hover/logo:bg-cyan-500/10 blur-[200px] rounded-full transition-all duration-1500 -z-10" />
+      
+      {/* Matrix Data Overlay on Hover */}
+      <div className="absolute inset-0 opacity-0 group-hover/logo:opacity-10 transition-opacity duration-1000 pointer-events-none bg-grid z-0" />
+    </div>
+  );
+};
