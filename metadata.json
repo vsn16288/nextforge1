@@ -1,0 +1,8 @@
+{
+  "name": "NEXTFORGE - App Development Solutions",
+  "description": "A premium, futuristic landing page for NEXTFORGE, an app development agency specializing in iOS and Android solutions with an AI-powered consultation expert.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
