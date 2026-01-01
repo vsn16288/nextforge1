@@ -1,29 +1,27 @@
 
 import React from 'react';
 import { Rocket, Smartphone, Zap, Code2, ChevronRight, CheckCircle2 } from 'lucide-react';
-import { Logo } from './Logo';
+import { Logo } from './Logo.tsx';
 
 export const Hero: React.FC = () => {
   return (
-    <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-950">
-      {/* Cinematic Lighting Atmosphere */}
+    <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-visible bg-slate-950">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none overflow-hidden">
         <div className="absolute top-[-20%] left-[-20%] w-[140%] h-[140%] bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.2)_0%,transparent_60%)]" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.05)_0%,transparent_50%)]" />
         <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-slate-950 to-transparent" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16 lg:mb-24 flex flex-col items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 overflow-visible">
+        <div className="text-center mb-16 lg:mb-24 flex flex-col items-center overflow-visible">
           
           <div className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-effect border border-cyan-500/20 text-[10px] font-black tracking-[0.3em] text-cyan-400 uppercase animate-float">
              <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse" />
              Forge Laboratory Online
           </div>
 
-          <div className="relative mb-24 mt-12">
-            {/* The Forge Core */}
-            <Logo variant="hero" className="w-40 h-40 md:w-72 md:h-72" />
+          <div className="relative mb-12 md:mb-24 mt-4 w-full flex justify-center overflow-visible">
+            <Logo variant="hero" className="w-32 h-32 md:w-64 md:h-64" />
           </div>
           
           <div className="space-y-6 max-w-5xl">
@@ -31,8 +29,8 @@ export const Hero: React.FC = () => {
               Forging the future of <span className="text-white font-black text-glow">Mobile Systems</span>
             </h2>
             
-            <h1 className="text-6xl md:text-[8rem] font-black tracking-tighter leading-[0.8] mb-8 select-none">
-              Small to <span className="text-transparent bg-clip-text bg-gradient-to-b from-cyan-400 to-blue-600">Enterprise.</span>
+            <h1 className="text-5xl md:text-[8rem] font-black tracking-tighter leading-[0.8] mb-8 select-none">
+              Small to <span className="text-transparent bg-clip-text bg-gradient-to-b from-cyan-400 to-blue-600 text-glow">Enterprise.</span>
             </h1>
 
             <p className="text-lg md:text-2xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-12">
@@ -54,7 +52,6 @@ export const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* Feature Banner Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20">
           {[
             { icon: <Zap />, title: "Rapid Deployment", text: "2x faster delivery cycles" },

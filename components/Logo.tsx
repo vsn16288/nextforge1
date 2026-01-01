@@ -38,10 +38,10 @@ export const Logo: React.FC<LogoProps> = ({
 
   // Hero Version - High-Impact Edge Glow and Smooth Sequence
   return (
-    <div className="relative flex flex-col items-center justify-center group/logo cursor-pointer select-none min-h-[400px] md:min-h-[600px] w-full max-w-screen-2xl mx-auto overflow-hidden px-4 py-20">
+    <div className="relative flex flex-col items-center justify-center group/logo cursor-pointer select-none min-h-[400px] md:min-h-[600px] w-full max-w-[100vw] overflow-visible py-12">
       
       {/* 1. THE CORE: Central Floating Energy Source */}
-      <div className={`${className} relative z-30 transition-all duration-1000 cubic-bezier(0.23, 1, 0.32, 1) group-hover/logo:opacity-0 group-hover/logo:blur-[120px] group-hover/logo:scale-[6] flex items-center justify-center animate-float pointer-events-none`}>
+      <div className={`${className} relative z-30 transition-all duration-1000 cubic-bezier(0.23, 1, 0.32, 1) group-hover/logo:opacity-0 group-hover/logo:blur-[120px] group-hover/logo:scale-[6] flex items-center justify-center animate-float pointer-events-none mb-4 md:mb-12`}>
         {logoImage ? (
           <img src={logoImage} alt="NEXTFORGE Core" className="w-full h-full object-contain drop-shadow-[0_0_50px_rgba(34,211,238,0.7)]" />
         ) : (
@@ -64,20 +64,20 @@ export const Logo: React.FC<LogoProps> = ({
         )}
       </div>
 
-      {/* 2. THE REVEAL: Scoped Brand Reveal Container */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-20 w-full">
+      {/* 2. THE REVEAL: Brand Reveal Container */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-20 w-full overflow-visible px-2 md:px-6">
         
-        {/* Brand Name: Each letter has a distinct high-intensity glow */}
-        <div className="flex justify-center items-center h-fit w-full px-2 mb-8 md:mb-16 overflow-visible">
+        {/* Brand Name: Adjusted clamp for width safety (8.2vw is safer for 9 chars) */}
+        <div className="flex justify-center items-center h-fit w-full mb-6 md:mb-10 overflow-visible">
           {brandName.split('').map((char, i) => (
             <span 
               key={i} 
               style={{ 
-                transitionDelay: `${i * 80}ms`,
-                fontSize: 'clamp(2.5rem, 11vw, 13rem)',
-                textShadow: '0 0 15px rgba(34,211,238,0.8), 0 0 30px rgba(34,211,238,0.4)',
+                transitionDelay: `${i * 50}ms`,
+                fontSize: 'clamp(2.2rem, 8.2vw, 10rem)',
+                textShadow: '0 0 30px rgba(34,211,238,0.6), 0 0 60px rgba(34,211,238,0.3)',
               }} 
-              className="font-black tracking-[-0.05em] text-white opacity-0 -translate-y-24 blur-2xl group-hover/logo:opacity-100 group-hover/logo:translate-y-0 group-hover/logo:blur-0 transition-all duration-700 cubic-bezier(0.19, 1, 0.22, 1) inline-block leading-none will-change-transform"
+              className="font-black tracking-[-0.01em] text-white opacity-0 -translate-y-16 blur-xl group-hover/logo:opacity-100 group-hover/logo:translate-y-0 group-hover/logo:blur-0 transition-all duration-700 cubic-bezier(0.19, 1, 0.22, 1) inline-block leading-none will-change-transform break-keep flex-shrink-0"
             >
               {char}
             </span>
@@ -85,27 +85,27 @@ export const Logo: React.FC<LogoProps> = ({
         </div>
         
         {/* Tagline: Smoothly emerges after the name is fully revealed */}
-        <div className="flex justify-center items-center w-full max-w-[90vw] md:max-w-6xl opacity-0 translate-y-12 group-hover/logo:opacity-100 group-hover/logo:translate-y-0 transition-all duration-1000 delay-[900ms] px-4">
-          <div className="h-[2px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent flex-1" />
+        <div className="flex justify-center items-center w-full max-w-[95vw] opacity-0 translate-y-6 group-hover/logo:opacity-100 group-hover/logo:translate-y-0 transition-all duration-1000 delay-[700ms]">
+          <div className="h-[1px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent flex-1 hidden sm:block" />
           
-          <div className="relative px-6 md:px-16 py-3 flex flex-col items-center">
-            <span className="text-xs sm:text-base md:text-3xl lg:text-4xl font-black tracking-[0.4em] md:tracking-[0.6em] text-cyan-400 uppercase italic whitespace-nowrap drop-shadow-[0_0_20px_rgba(34,211,238,0.6)] text-center block">
+          <div className="relative px-4 md:px-10 py-2 flex flex-col items-center">
+            <span className="text-[10px] sm:text-lg md:text-2xl lg:text-3xl font-black tracking-[0.2em] md:tracking-[0.4em] text-cyan-400 uppercase italic whitespace-nowrap drop-shadow-[0_0_15px_rgba(34,211,238,0.5)] text-center">
               {tagline}
             </span>
             
             {/* Animated Scanning Line */}
-            <div className="absolute top-0 left-0 w-full h-[1px] bg-white/40 animate-scan-v opacity-0 group-hover/logo:opacity-100" />
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-cyan-400/40 animate-scan-v opacity-0 group-hover/logo:opacity-100" />
           </div>
           
-          <div className="h-[2px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent flex-1" />
+          <div className="h-[1px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent flex-1 hidden sm:block" />
         </div>
       </div>
       
       {/* 3. ATMOSPHERE: High-Performance Glow Layers */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-cyan-600/0 group-hover/logo:bg-cyan-500/10 blur-[200px] rounded-full transition-all duration-1500 -z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-cyan-600/0 group-hover/logo:bg-cyan-500/5 blur-[150px] rounded-full transition-all duration-1500 -z-10" />
       
       {/* Matrix Data Overlay on Hover */}
-      <div className="absolute inset-0 opacity-0 group-hover/logo:opacity-10 transition-opacity duration-1000 pointer-events-none bg-grid z-0" />
+      <div className="absolute inset-0 opacity-0 group-hover/logo:opacity-5 transition-opacity duration-1000 pointer-events-none bg-grid z-0" />
     </div>
   );
 };

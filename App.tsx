@@ -1,15 +1,16 @@
 
 import React, { useState, useEffect } from 'react';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { Services } from './components/Services';
-import { Process } from './components/Process';
-import { Stats } from './components/Stats';
-import { Projects } from './components/Projects';
-import { Testimonials } from './components/Testimonials';
-import { Contact } from './components/Contact';
-import { SolutionExpert } from './components/SolutionExpert';
-import { Footer } from './components/Footer';
+import { Navbar } from './components/Navbar.tsx';
+import { Hero } from './components/Hero.tsx';
+import { Services } from './components/Services.tsx';
+import { Process } from './components/Process.tsx';
+import { Stats } from './components/Stats.tsx';
+import { Projects } from './components/Projects.tsx';
+import { Testimonials } from './components/Testimonials.tsx';
+import { Contact } from './components/Contact.tsx';
+import { SolutionExpert } from './components/SolutionExpert.tsx';
+import { Footer } from './components/Footer.tsx';
+import { DeploymentForge } from './components/DeploymentForge.tsx';
 
 const App: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,6 +37,7 @@ const App: React.FC = () => {
         <Stats />
         <Services />
         <Process />
+        <DeploymentForge />
         <Projects />
         <Testimonials />
         <Contact />

@@ -1,7 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
-import { Quote, Play, Loader2, X, Clapperboard, Bot, Share2, Check, Terminal, Cpu, Layers, Disc } from 'lucide-react';
-import { Testimonial } from '../types';
+import React, { useState } from 'react';
+import { Quote, Play, Loader2, X, Clapperboard, Share2, Check, Terminal, Cpu, Layers } from 'lucide-react';
+import { Testimonial } from '../types.ts';
 import { GoogleGenAI } from "@google/genai";
 
 const testimonials: Testimonial[] = [
@@ -88,16 +88,9 @@ export const Testimonials: React.FC = () => {
   };
 
   const handleGenerateVideo = async (testimonial: Testimonial) => {
-    // Check if API key is present for hosting environments
     if (!process.env.API_KEY || process.env.API_KEY === "undefined") {
       alert("Neural Link Offline: To enable the Video Forge, please add your Gemini API Key as an environment variable (API_KEY) in your hosting dashboard.");
       return;
-    }
-
-    // @ts-ignore
-    if (window.aistudio && !(await window.aistudio.hasSelectedApiKey())) {
-      // @ts-ignore
-      await window.aistudio.openSelectKey();
     }
 
     setGeneratingVideo(testimonial.id);
@@ -178,10 +171,8 @@ export const Testimonials: React.FC = () => {
               key={t.id} 
               className="glass-effect p-8 rounded-[32px] border border-slate-800 hover:border-cyan-500/60 hover:scale-[1.04] hover:shadow-[0_0_60px_rgba(34,211,238,0.2)] transition-all duration-500 group relative overflow-hidden cursor-default"
             >
-              {/* Internal Card Glow Element */}
               <div className="absolute -inset-2 bg-gradient-to-br from-cyan-500/0 via-cyan-500/0 to-cyan-500/0 group-hover:from-cyan-500/5 group-hover:to-blue-500/5 transition-all duration-700 pointer-events-none" />
               
-              {/* Parallax Background Image */}
               {t.bgImage && (
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-all duration-1000 ease-out pointer-events-none transform scale-125 group-hover:scale-100 group-hover:-translate-y-4 group-hover:translate-x-2">
                   <img 
@@ -193,7 +184,6 @@ export const Testimonials: React.FC = () => {
                 </div>
               )}
 
-              {/* Animated Overlays */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
                 <div className="absolute inset-0 bg-cyan-500/5 animate-circuit-pulse" />
                 <div className="absolute inset-0 overflow-hidden">
@@ -213,18 +203,14 @@ export const Testimonials: React.FC = () => {
                         className="flex items-center justify-center w-9 h-9 rounded-full bg-slate-900 border border-slate-800 text-cyan-400 hover:bg-cyan-500 hover:text-slate-950 transition-all relative group/share"
                       >
                         {copiedId === t.id ? (
-                          <Check className="w-4 h-4 transition-transform group-hover/share:scale-110" />
+                          <Check className="w-4 h-4" />
                         ) : (
                           <Share2 className="w-4 h-4 transition-transform group-hover/share:scale-110 group-hover/share:rotate-12" />
                         )}
-                        
                         <div className={`absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-800 text-white text-[10px] font-bold rounded shadow-xl pointer-events-none transition-all duration-300 transform ${
-                          copiedId === t.id 
-                            ? 'opacity-100 translate-y-0' 
-                            : 'opacity-0 group-hover/share:opacity-100 group-hover/share:-translate-y-1'
+                          copiedId === t.id ? 'opacity-100' : 'opacity-0 group-hover/share:opacity-100'
                         }`}>
                           {copiedId === t.id ? 'Copied!' : 'Share'}
-                          <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-800" />
                         </div>
                       </button>
                       <button 
@@ -232,11 +218,7 @@ export const Testimonials: React.FC = () => {
                         disabled={generatingVideo !== null}
                         className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 border border-slate-800 text-xs font-bold text-cyan-400 hover:bg-cyan-500 hover:text-slate-950 transition-all disabled:opacity-50"
                       >
-                        {generatingVideo === t.id ? (
-                          <Loader2 className="w-3 h-3 animate-spin" />
-                        ) : (
-                          <Play className="w-3 h-3" />
-                        )}
+                        {generatingVideo === t.id ? <Loader2 className="w-3 h-3 animate-spin" /> : <Play className="w-3 h-3" />}
                         Video Summary
                       </button>
                     </div>
@@ -247,53 +229,20 @@ export const Testimonials: React.FC = () => {
                 </div>
                 
                 <div className="mt-auto flex items-center gap-4">
-                  {/* Avatar Container with enhanced animations */}
                   <div className="relative group/avatar cursor-pointer">
-                    {/* Pulsing Outer Glow Ring */}
-                    <div className="absolute -inset-1.5 bg-cyan-500/0 rounded-full blur-[8px] group-hover/avatar:bg-cyan-500/40 group-hover/avatar:animate-radar-ping transition-all duration-700" />
-                    
-                    {/* Technical Orbit Elements */}
-                    <div className="absolute inset-[-12px] opacity-0 group-hover/avatar:opacity-100 transition-opacity duration-500 pointer-events-none">
-                      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-white rounded-full animate-orbit" />
-                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-cyan-400 rounded-full animate-orbit [animation-delay:-2s]" />
-                      <div className="absolute inset-0 border border-cyan-500/20 rounded-full border-dashed animate-spin-slow" />
-                    </div>
-
-                    {/* Main Avatar Image */}
+                    <div className="absolute -inset-1.5 bg-cyan-500/0 rounded-full blur-[8px] group-hover/avatar:bg-cyan-500/40 transition-all duration-700" />
                     <div className="relative overflow-hidden rounded-full border-2 border-slate-800 group-hover/avatar:border-cyan-400 transition-colors duration-500">
-                      <img 
-                        src={t.avatar} 
-                        alt={t.name} 
-                        className="w-14 h-14 object-cover shadow-xl transition-all duration-700 cubic-bezier(0.175, 0.885, 0.32, 1.275) group-hover/avatar:scale-125 group-hover/avatar:rotate-[15deg] group-hover/avatar:-translate-y-2"
-                      />
-                      {/* Technical scan overlay on hover */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/20 to-transparent opacity-0 group-hover/avatar:opacity-100 transition-opacity duration-300" />
+                      <img src={t.avatar} alt={t.name} className="w-14 h-14 object-cover" />
                     </div>
-
-                    {/* Status indicator */}
-                    <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-green-500 border-2 border-slate-950 rounded-full scale-0 group-hover/avatar:scale-100 transition-transform duration-500 delay-100" />
                   </div>
-
                   <div>
                     <h4 className="text-lg font-bold text-white transition-colors group-hover:text-cyan-400">{t.name}</h4>
-                    <p className="text-sm text-cyan-400 font-medium">
-                      {t.role} <span className="text-slate-600 mx-1">@</span> {t.company}
-                    </p>
+                    <p className="text-sm text-cyan-400 font-medium">{t.role} <span className="text-slate-600 mx-1">@</span> {t.company}</p>
                   </div>
                 </div>
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="mt-20 text-center">
-          <div className="inline-flex items-center gap-8 py-4 px-8 rounded-full border border-slate-800 bg-slate-900/40 hover:border-cyan-500/30 transition-colors">
-            <span className="text-slate-400 text-sm">Join 50+ successful brands</span>
-            <div className="h-4 w-px bg-slate-800" />
-            <a href="#contact" className="text-cyan-400 text-sm font-bold hover:text-white hover:text-glow transition-all">
-              Read all Case Studies →
-            </a>
-          </div>
         </div>
       </div>
 
@@ -301,86 +250,33 @@ export const Testimonials: React.FC = () => {
       {(generatingVideo || videoUrl) && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
           <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-md" onClick={() => { setGeneratingVideo(null); setVideoUrl(null); }} />
-          <div className="relative w-full max-w-4xl glass-effect border-cyan-500/30 rounded-3xl overflow-hidden shadow-[0_0_100px_rgba(34,211,238,0.2)]">
+          <div className="relative w-full max-w-4xl glass-effect border-cyan-500/30 rounded-3xl overflow-hidden">
             <div className="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
               <div className="flex items-center gap-3">
                 <Clapperboard className="w-5 h-5 text-cyan-400" />
                 <span className="font-bold text-white uppercase tracking-widest text-xs">Forge Protocol: Video Synthesis</span>
               </div>
-              <button 
-                onClick={() => { setGeneratingVideo(null); setVideoUrl(null); }}
-                className="p-2 hover:bg-white/10 rounded-full transition-colors"
-              >
+              <button onClick={() => { setGeneratingVideo(null); setVideoUrl(null); }} className="p-2 hover:bg-white/10 rounded-full transition-colors">
                 <X className="w-6 h-6 text-white" />
               </button>
             </div>
-
             <div className="aspect-video bg-slate-950 flex flex-col items-center justify-center relative">
               {videoUrl ? (
-                <video 
-                  src={videoUrl} 
-                  autoPlay 
-                  controls 
-                  className="w-full h-full object-contain"
-                />
+                <video src={videoUrl} autoPlay controls className="w-full h-full object-contain" />
               ) : (
                 <div className="w-full h-full p-8 md:p-12 flex flex-col justify-center max-w-2xl mx-auto">
                   <div className="flex justify-between items-end mb-4">
                     <div className="space-y-1">
                       <h3 className="text-2xl md:text-3xl font-black text-white">{loadingMessage}</h3>
-                      <p className="text-cyan-500/70 text-xs font-bold uppercase tracking-[0.2em] flex items-center gap-2">
-                        <Cpu className="w-3 h-3" /> Processing on VEO Neural Clusters
-                      </p>
+                      <p className="text-cyan-500/70 text-xs font-bold uppercase tracking-[0.2em] flex items-center gap-2"><Cpu className="w-3 h-3" /> VEO Processing</p>
                     </div>
-                    <div className="text-right">
-                      <span className="text-4xl font-black text-white">{Math.round(progress)}%</span>
-                    </div>
+                    <div className="text-right"><span className="text-4xl font-black text-white">{Math.round(progress)}%</span></div>
                   </div>
-                  
-                  {/* Progress Bar Container */}
                   <div className="relative h-4 w-full bg-slate-900 border border-slate-800 rounded-full overflow-hidden mb-12">
-                    <div 
-                      className="absolute inset-y-0 left-0 bg-gradient-to-r from-blue-600 via-cyan-400 to-white transition-all duration-700 ease-out shadow-[0_0_20px_rgba(34,211,238,0.5)]"
-                      style={{ width: `${progress}%` }}
-                    />
-                    <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
+                    <div className="absolute inset-y-0 left-0 bg-gradient-to-r from-blue-600 via-cyan-400 to-white" style={{ width: `${progress}%` }} />
                   </div>
-
-                  {/* Status Grid */}
-                  <div className="grid grid-cols-2 gap-4 mb-8">
-                    <div className="glass-effect p-4 rounded-2xl border-slate-800/50 flex items-center gap-4">
-                      <div className="w-10 h-10 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-400">
-                        <Layers className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <div className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Synthesis</div>
-                        <div className="text-white font-bold text-sm">Active Layering</div>
-                      </div>
-                    </div>
-                    <div className="glass-effect p-4 rounded-2xl border-slate-800/50 flex items-center gap-4">
-                      <div className="w-10 h-10 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400">
-                        <Terminal className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <div className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Protocol</div>
-                        <div className="text-white font-bold text-sm">VEO-3.1-Fast</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Technical Logs */}
-                  <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 font-mono text-[10px] text-slate-400 space-y-1 overflow-hidden h-32 relative">
-                    <div className="absolute top-0 right-4 px-2 py-1 bg-slate-800 border-x border-b border-slate-700 rounded-b text-[8px] text-cyan-500 animate-pulse">LIVE LOGS</div>
-                    {logs.map((log, i) => (
-                      <div key={i} className={`flex items-start gap-2 ${i === 0 ? 'text-cyan-400' : ''}`}>
-                        <span className="opacity-30">[{new Date().toLocaleTimeString()}]</span>
-                        <span>{log}</span>
-                      </div>
-                    ))}
-                    <div className="absolute bottom-4 left-4 flex items-center gap-2">
-                       <div className="w-1.5 h-1.5 bg-cyan-500 rounded-full animate-pulse" />
-                       <span className="text-[8px] uppercase tracking-widest font-bold">Awaiting neural frame stream...</span>
-                    </div>
+                  <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 font-mono text-[10px] text-slate-400 space-y-1 h-32 overflow-hidden">
+                    {logs.map((log, i) => <div key={i} className={i === 0 ? 'text-cyan-400' : ''}>[{new Date().toLocaleTimeString()}] {log}</div>)}
                   </div>
                 </div>
               )}

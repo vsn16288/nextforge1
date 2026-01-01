@@ -1,8 +1,8 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageSquare, X, Send, Bot, User } from 'lucide-react';
-import { getSolutionExpertResponse } from '../services/geminiService';
-import { ChatMessage } from '../types';
+import { MessageSquare, X, Send, Bot } from 'lucide-react';
+import { getSolutionExpertResponse } from '../services/geminiService.ts';
+import { ChatMessage } from '../types.ts';
 
 export const SolutionExpert: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +37,6 @@ export const SolutionExpert: React.FC = () => {
     <div className="fixed bottom-6 right-6 z-[60]">
       {isOpen ? (
         <div className="w-[380px] h-[550px] max-h-[85vh] flex flex-col glass-effect rounded-2xl shadow-2xl border-cyan-500/30 overflow-hidden animate-in fade-in zoom-in duration-300">
-          {/* Header */}
           <div className="p-4 bg-gradient-to-r from-cyan-600 to-blue-600 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
@@ -56,7 +55,6 @@ export const SolutionExpert: React.FC = () => {
             </button>
           </div>
 
-          {/* Messages */}
           <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-950/50">
             {messages.map((msg, i) => (
               <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
@@ -80,7 +78,6 @@ export const SolutionExpert: React.FC = () => {
             )}
           </div>
 
-          {/* Input */}
           <div className="p-4 bg-slate-900/80 border-t border-slate-800">
             <div className="flex gap-2">
               <input 
